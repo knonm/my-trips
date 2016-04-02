@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyTripServer" basedir=".">
+	<property environment="env"/>	
+	<property name="tomcatdir" value="${env.CATALINA_HOME}" />	
+	<property name="deploydir" value="${env.CATALINA_BASE}/webapps" />
+
+	<target name="default" depends="compile,buildwar,deploy"></target>
+
+	<target name="startup">
+		<exec executable="./catalina.sh" dir="${tomcatdir}/bin">
+			<arg line="start" />
+		</exec>
+	</target>
+
+	<target name="shutdown">
+		<exec executable="./catalina.sh" dir="${tomcatdir}/bin">
+			<arg line="stop" />
+		</exec>
+	</target>
+
+	<target name="compile">
+		<delete dir="build/classes" />
+		<mkdir dir="build/classes" />
+		<javac destdir="build/classes" srcdir="src">
+		    <classpath>
+		        <fileset dir="lib">
+		              <include name="*" />
+		        </fileset>
+		    </classpath>
+		</javac>
+	</target>
+
+	<target name="buildwar">
+		<war destfile="MyTripServer.war"
+		 webxml="WebContent/WEB-INF/web.xml">
+		    <lib dir="lib" />
+			<classes dir="build/classes" />
+			<metainf dir="WebContent/META-INF" />
+		    <webinf dir="WebContent/WEB-INF">
+		        <exclude name="**/web.xml" />
+		    </webinf>
+		</war>
+	</target>
+
+	<target name="deploy">
+		<copy file="MyTripServer.war" todir="${deploydir}" />
+		<delete file="MyTripServer.war" />
+	</target>
+
+</project>
