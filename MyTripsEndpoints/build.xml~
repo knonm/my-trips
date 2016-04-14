@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyTripServer" basedir=".">
+	<property environment="env"/>
+
+	<target name="compile">
+		<delete dir="bin" />
+		<mkdir dir="bin" />		
+		<delete dir="lib" />
+		<mkdir dir="lib" />
+		<javac destdir="bin" srcdir="src" />
+		<jar destfile="MyTripsEndpoint.jar" basedir="bin" />
+	</target>
+
+	<target name="copy">
+		<copy file="lib/MyTripsEndpoint.jar" todir="../MyTripsServer/lib" />
+		<copy file="lib/MyTripsEndpoint.jar" todir="../MyTripsClient/lib" />
+	</target>
+
+</project>

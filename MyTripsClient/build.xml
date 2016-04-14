@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyTripServer" basedir=".">
+	<property environment="env"/>
+
+	<target name="compile">
+		<delete dir="bin" />
+		<mkdir dir="bin" />
+		<javac destdir="bin" srcdir="src">
+		    <classpath>
+		        <pathelement location="lib/MyTripsEndpoint.jar" />
+		    </classpath>
+		</javac>
+	</target>
+
+	<target name="run">
+		<java classname="br.usp.mytrips.Main">
+			<classpath>
+				<pathelement location="lib/MyTripsEndpoint.jar" />
+				<pathelement location="bin" />
+			</classpath>
+		</java>
+	</target>
+
+</project>
