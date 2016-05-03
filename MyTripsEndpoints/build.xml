@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyTripServer" basedir=".">
+<project name="MyTripServer" basedir="." default="default">
 	<property environment="env"/>
 
-	<target name="compile">
+	<target name="default" depends="build,copy"></target>
+
+	<target name="build">
 		<delete dir="bin" />
 		<mkdir dir="bin" />		
 		<delete dir="lib" />

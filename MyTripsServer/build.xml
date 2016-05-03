@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyTripServer" basedir=".">
+<project name="MyTripServer" basedir="." default="default">
 	<property environment="env"/>	
-	<property name="tomcatdir" value="${env.CATALINA_HOME}" />	
+	<property name="tomcatdir" value="${env.CATALINA_HOME}" />
+	<property name="basedir" value="${env.CATALINA_BASE}" />
 	<property name="deploydir" value="${env.CATALINA_BASE}/webapps" />
 
-	<target name="default" depends="compile,buildwar,deploy"></target>
+	<target name="default" depends="shutdown,build,buildwar,deploy,startup"></target>
 
 	<target name="startup">
 		<exec executable="./catalina.sh" dir="${tomcatdir}/bin">
@@ -18,7 +19,7 @@
 		</exec>
 	</target>
 
-	<target name="compile">
+	<target name="build">
 		<delete dir="build/classes" />
 		<mkdir dir="build/classes" />
 		<javac destdir="build/classes" srcdir="src">
@@ -43,6 +44,8 @@
 	</target>
 
 	<target name="deploy">
+		<delete dir="${deploydir}/MyTripServer" />
+		<delete file="${deploydir}/MyTripServer.war" />
 		<copy file="MyTripServer.war" todir="${deploydir}" />
 		<delete file="MyTripServer.war" />
 	</target>

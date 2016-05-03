@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyTripServer" basedir=".">
+<project name="MyTripServer" basedir="." default="default">
 	<property environment="env"/>
 
-	<target name="compile">
+	<target name="default" depends="build,run"></target>
+
+	<target name="build">
 		<delete dir="bin" />
 		<mkdir dir="bin" />
 		<javac destdir="bin" srcdir="src">
 		    <classpath>
-		        <pathelement location="lib/MyTripsEndpoint.jar" />
+				<fileset dir="lib">
+		              <include name="*" />
+		        </fileset>
 		    </classpath>
 		</javac>
 	</target>
@@ -15,7 +19,9 @@
 	<target name="run">
 		<java classname="br.usp.mytrips.Main">
 			<classpath>
-				<pathelement location="lib/MyTripsEndpoint.jar" />
+				<fileset dir="lib">
+		              <include name="*" />
+		        </fileset>
 				<pathelement location="bin" />
 			</classpath>
 		</java>

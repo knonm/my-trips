@@ -16,7 +16,6 @@ public class Main {
 		try {
 			url = new URL("http://localhost:8080/MyTripServer/TesteEndpoint?wsdl");
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
