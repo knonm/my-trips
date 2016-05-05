@@ -34,6 +34,7 @@
 	<target name="buildwar">
 		<war destfile="MyTripServer.war"
 		 webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="jsp" />
 		    <lib dir="lib" />
 			<classes dir="build/classes" />
 			<metainf dir="WebContent/META-INF" />
