@@ -27,6 +27,9 @@
 		        <fileset dir="lib">
 		              <include name="*" />
 		        </fileset>
+			<fileset dir="${env.CATALINA_BASE}\lib">
+		              <include name="*" />
+		        </fileset>
 		    </classpath>
 		</javac>
 	</target>

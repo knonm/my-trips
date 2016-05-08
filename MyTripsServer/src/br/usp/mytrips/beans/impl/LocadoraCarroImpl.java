@@ -5,8 +5,8 @@ import javax.ejb.Stateful;
 
 import br.usp.mytrips.beans.LocadoraCarro;
 
-@Local
 @Stateful
+@Local(LocadoraCarro.class)
 public class LocadoraCarroImpl implements LocadoraCarro {
 
 	public String getCarro(String pais) {
