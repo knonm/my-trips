@@ -1,0 +1,21 @@
+.legenda{
+	font-size: small;
+}
+
+.row{
+	padding: 10px;
+}
+
+form *{
+	margin: 5px;
+}
+
+.centered{
+	text-align: center;
+	max-width: 100%;
+}
+
+h1{
+	font-family: "Rockwell Nova", "Rockwell";
+	color: #08A;
+}

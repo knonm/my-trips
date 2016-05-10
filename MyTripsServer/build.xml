@@ -27,11 +27,17 @@
 		        <fileset dir="lib">
 		              <include name="*" />
 		        </fileset>
-			<fileset dir="${env.CATALINA_BASE}\lib">
+				<fileset dir="${env.CATALINA_BASE}/lib">
 		              <include name="*" />
 		        </fileset>
 		    </classpath>
 		</javac>
+		<mkdir dir="build/classes/META-INF" />
+		<copy todir="build/classes/META-INF">
+			<fileset dir="src/META-INF">
+		              <include name="*" />
+		    </fileset>
+		</copy>
 	</target>
 
 	<target name="buildwar">
