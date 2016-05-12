@@ -6,4 +6,5 @@ import javax.ejb.Local;
 public interface Login {
 
 	public boolean validaUsuario(String email, String senha);
+	public void logoff();
 }

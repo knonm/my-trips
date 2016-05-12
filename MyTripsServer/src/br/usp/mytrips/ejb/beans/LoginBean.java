@@ -4,21 +4,32 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Remove;
+import javax.ejb.Stateful;
 
 import br.usp.mytrips.ejb.beans.interfaces.Login;
 import br.usp.mytrips.jpa.dao.UsuarioDAO;
 import br.usp.mytrips.jpa.entities.Usuario;
 
-@Stateless
+@Stateful
 @LocalBean
 public class LoginBean implements Login {
 	
 	@EJB
 	private UsuarioDAO usuarioDAO;
 	
+	private boolean validaUsuario = false;
+	
 	public boolean validaUsuario(String email, String senha) {
-		List<Usuario> usuarioList = this.usuarioDAO.validaUsuario(email, senha);
-		return !usuarioList.isEmpty();
+		if(!validaUsuario) {
+			List<Usuario> usuarioList = this.usuarioDAO.validaUsuario(email, senha);
+			this.validaUsuario = !usuarioList.isEmpty();
+		}
+		return validaUsuario;
+	}
+	
+	@Remove
+	public void logoff() {
+		validaUsuario = false;
 	}
 }
