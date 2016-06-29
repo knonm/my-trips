@@ -3,6 +3,7 @@
 <%@ page import="br.usp.mytrips.facade.LoginFacade" %>
 <%@ page import="br.usp.mytrips.ejb.factory.EJBFactory" %>
 <%@ page import="br.usp.mytrips.facade.GeoIPFacade" %>
+<%@ page import="br.usp.mytrips.rs.qpx.SearchTripsEndpoint" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,6 +44,7 @@ if(isValido) {
 	out.println("Login está correto.");
 } else {
 	out.println("Login está incorreto.");
+	out.println(SearchTripsEndpoint.testSearchTripsEndpoint());
 }
 %>
 </body>
