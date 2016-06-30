@@ -1,5 +1,8 @@
 package br.usp.mytrips.rs.qpx.request;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class PermittedDepartureTime {
 
 	private String kind = "qpxexpress#timeOfDayRange";

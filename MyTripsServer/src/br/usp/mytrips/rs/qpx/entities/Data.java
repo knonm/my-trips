@@ -1,5 +1,8 @@
 package br.usp.mytrips.rs.qpx.entities;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class Data {
 
 	private String kind = "qpxexpress#data";

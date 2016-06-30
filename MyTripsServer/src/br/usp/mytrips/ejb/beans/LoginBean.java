@@ -22,8 +22,10 @@ public class LoginBean implements Login {
 	
 	public boolean validaUsuario(String email, String senha) {
 		if(!validaUsuario) {
-			List<Usuario> usuarioList = this.usuarioDAO.validaUsuario(email, senha);
-			this.validaUsuario = !usuarioList.isEmpty();
+			if (email != null && senha != null && email.length() > 0 && senha.length() > 0) {
+				List<Usuario> usuarioList = this.usuarioDAO.validaUsuario(email, senha);
+				this.validaUsuario = !usuarioList.isEmpty();
+			}
 		}
 		return validaUsuario;
 	}

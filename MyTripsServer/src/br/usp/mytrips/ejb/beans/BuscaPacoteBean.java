@@ -1,14 +1,12 @@
-package br.usp.mytrips.rs.qpx;
+package br.usp.mytrips.ejb.beans;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 
-import org.apache.cxf.jaxrs.client.WebClient;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -19,52 +17,18 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import com.google.gson.Gson;
 
+import br.usp.mytrips.ejb.beans.interfaces.BuscaPacote;
 import br.usp.mytrips.rs.qpx.entities.QPXResponse;
-import br.usp.mytrips.rs.qpx.request.Passenger;
 import br.usp.mytrips.rs.qpx.request.QPXRequest;
-import br.usp.mytrips.rs.qpx.request.Request;
-import br.usp.mytrips.rs.qpx.request.Slice;
 
-public class SearchTripsEndpoint {
+@Stateless
+@LocalBean
+public class BuscaPacoteBean implements BuscaPacote {
 
-	public static String testSearchTripsEndpoint() {
-		/*WebClient webClient = WebClient.create("https://www.googleapis.com");
-        webClient.accept(MediaType.APPLICATION_JSON);
-        webClient.type(MediaType.APPLICATION_JSON);
-        
-        Gson gson = new Gson();
-        
-        QPXRequest qpxreq = new QPXRequest();
-        qpxreq.setMaxPrice("GBP5000");
-        
-        Response r = webClient.path("qpxExpress/v1/trips/search?key=AIzaSyAm9JhpnhWE0-K3lsqC5m4AB45qJRZCtnA").post(gson.toJson(qpxreq));
-        
-        String jsonString = gson.toJson((String)r);
-        
-        QPXResponse qpxres = gson.fromJson(jsonString, QPXResponse.class);
-        
-        return qpxres.getTrips().getRequestId();*/
+	public QPXResponse buscaPacote(QPXRequest qpxreq) {
 		try {
 			
 			Gson gson = new Gson();
-			
-			QPXRequest qpxreq = new QPXRequest();
-			Request req = new Request();
-			
-			Passenger passenger = new Passenger();
-			passenger.setAdultCount(1);
-			
-			Slice s1 = new Slice();
-			s1.setOrigin("BOS");
-			s1.setDestination("LAX");
-			s1.setDate("2016-09-19");
-			
-	        //qpxreq.setMaxPrice("GBP5000");
-			req.setPassengers(passenger);
-			req.setSlice(new Slice[] { s1 });
-			req.setSolutions(1);
-			
-			qpxreq.setRequest(req);
 	        
 			// create HTTP Client
 			HttpClient httpClient = HttpClientBuilder.create().build();
@@ -104,7 +68,7 @@ public class SearchTripsEndpoint {
 			
 			QPXResponse qpxres = gson.fromJson(outputFinal, QPXResponse.class);
 			
-			return outputFinal;
+			return qpxres;
  
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -112,6 +76,6 @@ public class SearchTripsEndpoint {
 			e.printStackTrace();
 		}
 		
-		return "";
+		return null;
 	}
 }

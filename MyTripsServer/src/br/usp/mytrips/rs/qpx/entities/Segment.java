@@ -1,5 +1,8 @@
 package br.usp.mytrips.rs.qpx.entities;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class Segment {
 
 	private String kind = "qpxexpress#segmentInfo";

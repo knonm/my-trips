@@ -1,5 +1,8 @@
 package br.usp.mytrips.rs.qpx.request;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class Passenger {
 
 	private String kind = "qpxexpress#passengerCounts";

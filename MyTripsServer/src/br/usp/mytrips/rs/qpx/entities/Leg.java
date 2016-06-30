@@ -1,5 +1,8 @@
 package br.usp.mytrips.rs.qpx.entities;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class Leg {
 
 	private String kind = "qpxexpress#legInfo";
