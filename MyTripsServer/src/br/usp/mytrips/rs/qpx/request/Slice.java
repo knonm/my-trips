@@ -6,16 +6,16 @@ import javax.ejb.Stateless;
 public class Slice {
 
 	private String kind = "qpxexpress#sliceInput";
-	private String origin;
-	private String destination;
-	private String date;
-	private int maxStops;
-	private int maxConnectionDuration;
-	private String preferredCabin;
-	private PermittedDepartureTime permittedDepartureTime;
-	private String[] permittedCarrier;
-	private String alliance;
-	private String[] prohibitedCarrier;
+	private String origin = null;
+	private String destination = null;
+	private String date = null;
+	private Integer maxStops = null;
+	private Integer maxConnectionDuration = null;
+	private String preferredCabin = null;
+	private PermittedDepartureTime permittedDepartureTime = null;
+	private String[] permittedCarrier = null;
+	private String alliance = null;
+	private String[] prohibitedCarrier = null;
 	
 	public String getKind() {
 		return kind;
@@ -41,16 +41,16 @@ public class Slice {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getMaxStops() {
+	public Integer getMaxStops() {
 		return maxStops;
 	}
-	public void setMaxStops(int maxStops) {
+	public void setMaxStops(Integer maxStops) {
 		this.maxStops = maxStops;
 	}
-	public int getMaxConnectionDuration() {
+	public Integer getMaxConnectionDuration() {
 		return maxConnectionDuration;
 	}
-	public void setMaxConnectionDuration(int maxConnectionDuration) {
+	public void setMaxConnectionDuration(Integer maxConnectionDuration) {
 		this.maxConnectionDuration = maxConnectionDuration;
 	}
 	public String getPreferredCabin() {
@@ -83,6 +83,5 @@ public class Slice {
 	public void setProhibitedCarrier(String[] prohibitedCarrier) {
 		this.prohibitedCarrier = prohibitedCarrier;
 	}
-	
 	
 }

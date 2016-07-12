@@ -38,19 +38,19 @@
 			<form role="form" method="post" action="listaPacotes.jsp">
 			<!--Informa origem, destino, data de ida e volta do vôo, quartos do hotel, quantos adultos, quantas crianças-->
 				<label for="origem">Origem</label>
-				<input type="search" class="form-control" id="origem" maxlength="60" />
+				<input type="search" class="form-control" name="origem" id="origem" maxlength="60" />
 				<label for="destino">Destino</label>
-				<input type="search" class="form-control" id="destino" maxlength="60" />
+				<input type="search" class="form-control" name="destino" id="destino" maxlength="60" />
 				<label for="dt_ida">Data da ida</label>
-				<input type="date" class="form-control" id="dt_ida" min="2016-06-01" />
-				<label for="dt_volta">Data da volta</label>
-				<input type="date" class="form-control" id="dt_volta" min="2016-06-01" />
+				<input type="date" class="form-control" name="dt_ida" id="dt_ida" min="2016-06-01" />
+				<!--<label for="dt_volta">Data da volta</label>
+				<input type="date" class="form-control" name="dt_volta" id="dt_volta" min="2016-06-01" />-->
 				<label for="quartos">Nº. de quartos</label>
-				<input type="number" class="form-control" id="quartos" min="0" max="9" />
+				<input type="number" class="form-control" name="quartos" id="quartos" min="0" max="9" />
 				<label for="adultos">Nº. de adultos (maiores de 12 anos)</label>
-				<input type="number" class="form-control" id="adultos" min="1" max="9" />
+				<input type="number" class="form-control" name="adultos" id="adultos" min="1" max="9" />
 				<label for="criancas">Nº. de crianças (menores de 12 anos)</label>
-				<input type="number" class="form-control" id="criancas" min="0" max="9" />
+				<input type="number" class="form-control" name="criancas" id="criancas" min="0" max="9" />
 				<button type="submit" class="btn btn-default">Buscar</button>
 			</form>
 		</div>

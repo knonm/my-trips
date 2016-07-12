@@ -1,16 +1,13 @@
-package br.usp.mytrips.rs.qpx.request;
+package br.usp.mytrips.rs.qpx.entities;
 
-import javax.ejb.Stateless;
-
-@Stateless
-public class Passenger {
+public class Passengers {
 
 	private String kind = "qpxexpress#passengerCounts";
-	private Integer adultCount = null;
-	private Integer childCount = null;;
-	private Integer infantInLapCount = null;;
-	private Integer infantInSeatCount = null;;
-	private Integer seniorCount = null;
+	private Integer adultCount;
+	private Integer childCount;
+	private Integer infantInLapCount;
+	private Integer infantInSeatCount;
+	private Integer seniorCount;
 	public String getKind() {
 		return kind;
 	}
@@ -46,6 +43,6 @@ public class Passenger {
 	}
 	public void setSeniorCount(Integer seniorCount) {
 		this.seniorCount = seniorCount;
-	};
+	}
 	
 }

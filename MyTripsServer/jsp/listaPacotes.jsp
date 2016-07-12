@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="br.usp.mytrips.facade.LoginFacade" %>
-<%@ page import="br.usp.mytrips.facade.BuscaPacoteFacade" %>s
+<%@ page import="br.usp.mytrips.facade.BuscaPacoteFacade" %>
 <%@ page import="br.usp.mytrips.ejb.factory.EJBFactory" %>
 <%@ page import="br.usp.mytrips.facade.GeoIPFacade" %>
 <%@ page import="br.usp.mytrips.rs.qpx.SearchTripsEndpoint" %>
@@ -38,48 +38,66 @@
 		
 		sl1.setOrigin(request.getParameter("origem"));
 		sl1.setDestination(request.getParameter("destino"));
-		//sl1.setDate(request.getParameter("dt_ida"));
+		sl1.setDate(request.getParameter("dt_ida"));
+		
+		passenger.setSeniorCount(Integer.valueOf(request.getParameter("adultos")));
+		passenger.setAdultCount(Integer.valueOf(request.getParameter("adultos")));
+		passenger.setChildCount(Integer.valueOf(request.getParameter("criancas")));
 		
 		req.setPassengers(passenger);
 		req.setSlice(new br.usp.mytrips.rs.qpx.request.Slice[] { sl1 });
+		req.setSolutions(10);
 		
 		qpxreq.setRequest(req);
 		
 		QPXResponse qpxres = buscaPacoteFacade.buscaPacote(qpxreq);
 		
-		for(int i = 0; i < 10; i++) {
-			
-			out.println(qpxres.getTrips().getRequestId());
+		out.println("<h1>Aeroportos</h1><table>");
+		for(int i = 0; i < qpxres.getTrips().getData().getAirport().length; i++) {
+			out.print("<tr><td>");
+			out.print(qpxres.getTrips().getData().getAirport()[i].getName());
+			out.print("<br /></td><td>");
+			out.print(qpxres.getTrips().getData().getAirport()[i].getCity());
+			out.print("</td></tr>");
 		}
+		out.print("</table>");
+		out.println("<br/>");
+		out.println("<h3>Preços</h3>");
+		for(int i = 0; i < qpxres.getTrips().getTripOption().length; i++) {
+
+			out.println(qpxres.getTrips().getTripOption()[i].getSaleTotal());
+			out.println("<br/");
+		}
+		out.println("<br/");
+		
+		out.println("<br/>");
+		
+		int numEscala = 1;
+		
+		for(TripOption tripsOpt : qpxres.getTrips().getTripOption()) {
+			
+			out.println("<h3>Escala " + numEscala++ + "</h3>");
+			for(br.usp.mytrips.rs.qpx.entities.Slice slice : tripsOpt.getSlice()) {
+				
+				out.println("Duração: " + slice.getDuration());
+				out.println("<table><tr><td>Origem</td><td>Destino</td></tr>");
+				for(Segment segment : slice.getSegment()) {
+					for(Leg leg : segment.getLeg()) {
+						out.println("<tr><td>");
+						out.println(leg.getOrigin());
+						out.println("</td><td>");
+						out.println(leg.getDestination());
+						out.println("</td></tr>");
+						
+					}
+				}
+				out.println("</table><br />");
+
+			}
+		}
+		out.println("<br/");
+		
 	%>
-	<div class="container">
-		<header class="row">
-			<div class="col-sm-12 centered">
-				<a href="index.jsp"><img src="img/logo.png" /></a>
-			</div>
-		</header>
-		<div>
-			<h1>Buscar pacotes</h1>
-			<form role="form" method="post" action="listaPacotes.jsp">
-			<!--Informa origem, destino, data de ida e volta do vôo, quartos do hotel, quantos adultos, quantas crianças-->
-				<label for="origem">Origem</label>
-				<input type="search" class="form-control" id="origem" maxlength="60" />
-				<label for="destino">Destino</label>
-				<input type="search" class="form-control" id="destino" maxlength="60" />
-				<label for="dt_ida">Data da ida</label>
-				<input type="date" class="form-control" id="dt_ida" min="2016-06-01" />
-				<label for="dt_volta">Data da volta</label>
-				<input type="date" class="form-control" id="dt_volta" min="2016-06-01" />
-				<label for="quartos">Nº. de quartos</label>
-				<input type="number" class="form-control" id="quartos" min="0" max="9" />
-				<label for="adultos">Nº. de adultos (maiores de 12 anos)</label>
-				<input type="number" class="form-control" id="adultos" min="1" max="9" />
-				<label for="criancas">Nº. de crianças (menores de 12 anos)</label>
-				<input type="number" class="form-control" id="criancas" min="0" max="9" />
-				<button type="submit" class="btn btn-default">Cadastrar-se</button>
-			</form>
-		</div>
-	</div>
 	<%
 		
 	}

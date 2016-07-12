@@ -38,11 +38,11 @@
 			<button type="submit" class="btn btn-default">Buscar Pacotes</button>
 		</form>
 		
-		<!--<form role="form" method="post" action="login.jsp">
+		<form role="form" method="post" action="login.jsp">
 			<label for="ip_address">IP Address: </label>
 			<input type="text" class="form-control" name="ip_address" id="ip_address" maxlength="60" />
 			<button type="submit" class="btn btn-default">Consultar</button>
-		</form> -->
+		</form>
 		<%
 		String ip = request.getParameter("ip_address");
 		if(ip != null && ip.length() > 0) {

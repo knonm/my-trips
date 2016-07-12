@@ -15,7 +15,13 @@ form *{
 	max-width: 100%;
 }
 
-h1{
+h1, h2, h3{
 	font-family: "Rockwell Nova", "Rockwell";
 	color: #08A;
+}
+
+td{
+	border-color: #CCC;
+	padding:1
+	0px 10px 10px 10px;
 }

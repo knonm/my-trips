@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 
 import org.apache.http.HttpResponse;
@@ -43,6 +44,9 @@ public class BuscaPacoteBean implements BuscaPacote {
 					gson.toJson(qpxreq),
 				    ContentType.APPLICATION_JSON);
 			
+			System.out.println("[TRIPSIN]: ");
+			System.out.println(gson.toJson(qpxreq));
+			
 			getRequest.setEntity(requestEntity);
 			
 			// Execute your request and catch response
@@ -65,6 +69,9 @@ public class BuscaPacoteBean implements BuscaPacote {
 			}
 			
 			//return gson.toJson(qpxreq);
+			
+			System.out.println("[TRIPSOUT]: ");
+			System.out.println(outputFinal);
 			
 			QPXResponse qpxres = gson.fromJson(outputFinal, QPXResponse.class);
 			

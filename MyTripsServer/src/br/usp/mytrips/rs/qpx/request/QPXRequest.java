@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class QPXRequest {
 
-	private Request request;
+	private Request request = null;
 
 	public Request getRequest() {
 		return request;

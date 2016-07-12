@@ -6,8 +6,8 @@ import javax.ejb.Stateless;
 public class PermittedDepartureTime {
 
 	private String kind = "qpxexpress#timeOfDayRange";
-	private String earliestTime;
-	private String latestTime;
+	private String earliestTime = null;
+	private String latestTime = null;
 	
 	public String getKind() {
 		return kind;
